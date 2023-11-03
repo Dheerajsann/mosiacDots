@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .tabs {
+            width: 35%;
+            display: block;
+            background-color: #333;
+            float: left;
+            height: 100vh;
+        }
+
+        .tab {
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background-color: blue;
+        }
+
+        .content {
+            width: 65%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .division {
+            flex: 0 0 calc(50% - 10px);
+            width: 700px;
+            height: 360px;
+            border: 1px solid grey;
+            text-align: center;
+            margin: 5px;
+        }
+
+        .division img {
+            width: 150px;
+            height: 170px;
+        }
+
+        .division h3 {
+            font-size: 16px;
+        }
+
+        #addNew {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                width: 100%;
+                float: none;
+            }
+            .content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <div class="tab active" id="homeTab">Home</div>
+        <div class="tab" id="contactTab">Contact</div>
+        <div class="tab" id="aboutTab">About</div>
+    </div>
+    <div class="content">
+        <div class="division">
+            <img src="Apartment.jpg" alt="Apartment">
+            <h3>luxury one</h3>
+        </div>
+        <div class="division">
+            <img src="Apartment.jpg" alt="Apartment">
+            <h3>luxury one</h3>
+        </div>
+    </div>
+    <button id="addNew">Add New</button>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        const addNewButton = document.getElementById('addNew');
+        addNewButton.addEventListener('click', () => {
+            const newDivision = document.createElement('div');
+            newDivision.className = 'division';
+            newDivision.innerHTML = `
+                <img src="Apartment.jpg" alt="Apartment">
+                <h3>luxury one</h3>
+            `;
+            document.querySelector('.content').appendChild(newDivision);
+        });
+    </script>
+</body>
+</html>
